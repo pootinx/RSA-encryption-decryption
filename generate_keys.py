@@ -1,5 +1,8 @@
 import math
 import random
+import pyfiglet
+from rich import print
+from termcolor import colored, cprint
 
 
 def is_prime(n):
@@ -46,19 +49,22 @@ def generate_keypair():
 
 
 def display_menu():
-    print("RSA Encryption and Decryption")
     print("1. Generate private and public Keys ")
     print("2. Exit")
 
 
 def main():
+    
     public_key = None
     private_key = None
-
+    title = pyfiglet.figlet_format('RSA GenKeys')
+    print(f'[magenta]{title}[/magenta]')
+    print("=======================_BY pootinx_==========================" )
     while True:
         display_menu()
+        
+        
         choice = input("Enter your choice: ")
-
         if choice == "1":
             public_key, private_key = generate_keypair()
             print("Keys generated successfully!")

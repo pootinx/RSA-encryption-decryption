@@ -1,5 +1,8 @@
 import math
 import random
+import pyfiglet
+from rich import print
+from termcolor import colored, cprint
 
 
 def generate_keys():
@@ -75,43 +78,53 @@ def get_input(label):
 
 
 def get_message(label):
-    return input(label)
+        return input(label)
 
+def display_menu():
+    print("1. Generate private and public Keys ")
+    print("2. Exit")
 
-while True:
-    print("------------------RSA Encryption and Decryption------------------")
-    print("1. Encrypt Message")
-    print("2. Decrypt Message")
-    print("3. Generate Keys")
-    print("4. Exit")
+def main():   
+    title = pyfiglet.figlet_format('RSA GenKeys')
+    print(f'[magenta]{title}[/magenta]')
+    print("=======================_BY pootinx_========================" )
+    print("------------------RSA Encryption and Decryption-------------") 
+    while True:
+        
+        print("1. Encrypt Message")
+        print("2. Decrypt Message")
+        print("3. Generate Keys")
+        print("4. Exit")
 
-    choice = int(input("Enter your choice: "))
+        choice = int(input("Enter your choice: "))
 
-    if choice == 1:
-        n = get_input("Enter the public key 'n': ")
-        e = get_input("Enter the public key 'e': ")
-        message = get_message("Enter the message to encrypt: ")
-        encrypted_message = encrypt(message, (n, e))
-        print("Encrypted message:", encrypted_message)
+        if choice == 1:
+            n = get_input("Enter the public key 'n': ")
+            e = get_input("Enter the public key 'e': ")
+            message = get_message("Enter the message to encrypt: ")
+            encrypted_message = encrypt(message, (n, e))
+            print("Encrypted message:", encrypted_message)
 
-    elif choice == 2:
-        n = get_input("Enter the private key 'n': ")
-        d = get_input("Enter the private key 'd': ")
-        encrypted_message = get_input("Enter the message to decrypt: ")
-        decrypted_message = decrypt(encrypted_message, (n, d))
-        print("Decrypted message:", decrypted_message)
+        elif choice == 2:
+            n = get_input("Enter the private key 'n': ")
+            d = get_input("Enter the private key 'd': ")
+            encrypted_message = get_input("Enter the message to decrypt: ")
+            decrypted_message = decrypt(encrypted_message, (n, d))
+            print("Decrypted message:", decrypted_message)
 
-    elif choice == 3:
-        public_key, private_key = generate_keys()
-        print("Public Key:")
-        print("n =", public_key[0])
-        print("e =", public_key[1])
-        print("Private Key:")
-        print("n =", private_key[0])
-        print("d =", private_key[1])
+        elif choice == 3:
+            public_key, private_key = generate_keys()
+            print("Public Key:")
+            print("n =", public_key[0])
+            print("e =", public_key[1])
+            print("Private Key:")
+            print("n =", private_key[0])
+            print("d =", private_key[1])
 
-    elif choice == 4:
-        break
+        elif choice == 4:
+            break
 
-    else:
-        print("Invalid choice. Please try again.")
+        else:
+            print("Invalid choice. Please try again.")
+if __name__ == "__main__":
+    main()
